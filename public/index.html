@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport"
+    content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,width=device-width,viewport-fit=cover">
+  <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
+  <meta name="format-detection" content="telephone=no">
+  <meta name="wap-font-scale" content="no">
+  <!-- <script src="./static/js/config.js"></script> -->
+  <!-- <title><%= htmlWebpackPlugin.options.title %></title> -->
+  <script>
+    var windowHeight = window.innerHeight, public_styles = { container_exclude_title: { height: windowHeight }, banOverflowX: { overflowX: "hidden" } }, parseInt_10 = function (e) { return parseInt(e, 10) }; function parseFloat_10(e) { return parseFloat(e, 10) } document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px", window.onerror = function (e, n, t, o, i) { return !0 }
+  </script>
+  <script>
+    ;(function(doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function() {
+
+                var clientWidth = docEl.clientWidth
+                if (!clientWidth) return
+                if (clientWidth >= 750) {
+                    docEl.style.fontSize = '100px'
+                } else {
+                    docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'
+                }
+          docEl.clientWidth
+            }
+
+        if (!doc.addEventListener) return
+        recalc()
+        win.addEventListener(resizeEvt, recalc, false)
+        doc.addEventListener('DOMContentLoaded', recalc, false)
+    })(document, window)
+    </script>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      font-weight: 400;
+      font-style: normal;
+      box-sizing: border-box;
+    }
+
+    option,
+    select {
+      word-wrap: normal
+    }
+
+    select {
+      font-size: 16px;
+      font-family: Microsoft YaHei, Verdana, Arial, Helvetica, sans-serif
+    }
+
+    textarea {
+      font-size: 15px
+    }
+
+    img {
+      border: 0
+    }
+
+    dd,
+    dl,
+    dt,
+    li,
+    ol,
+    ul {
+      list-style: none
+    }
+
+    br {
+      height: 0;
+      line-height: 0;
+      font-size: 0;
+      overflow: hidden;
+      vertical-align: top
+    }
+
+    body {
+      background: #f4f4f4;
+      color: #151516;
+      user-select: none;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    .van-toast {
+      z-index: 99999 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div id="app" class="tx-dx">
+
+  </div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>
