@@ -147,7 +147,7 @@ export default {
   },
   created() {
     console.log(apiHost);
-    console.log('确认修改3');
+    console.log("确认修改3");
   },
   mounted() {
     this.firstAPI();
@@ -222,7 +222,12 @@ export default {
         });
       } else {
         //跳转轮盘
-        // this.$router.push(`/turntable?${turntable_id}`);
+        this.$router.push({
+          name: "lucky",
+          params: {
+            turntable_id: turntable_id,
+          },
+        });
       }
       // if (this.listswiper.length === index + 1) {
       //   console.log("跳转转盘列表");
@@ -304,12 +309,15 @@ export default {
   .swiper-n2 {
     border-radius: 10px;
     margin: 0 12px;
-    min-height: 2.4rem;
+    // height: 345px;
+    height: calc((100vw - 24px) / 16 * 9);
+    // max-height: 56.25vw;
+    // overflow: hidden;
     .van-swipe-item {
       img {
         width: 100%;
-        max-width: 100%;
-        display: block;
+        height: 100%;
+        // object-fit: fill;
       }
     }
   }

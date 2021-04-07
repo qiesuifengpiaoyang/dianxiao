@@ -13,6 +13,24 @@ Vue.use(Vuex)
 
 const routes = [
   {
+  //测试的时候添加的登录页
+  path: '/login',
+  name: 'login',
+
+  // meta: { wxt: true },
+  // meta: { requiresAuth: true, wxt: true },
+  component: () => import('../views/login.vue')
+},
+{
+  //测试的时候添加的登录页
+  path: '/ceshi',
+  name: 'ceshi',
+
+  // meta: { wxt: true },
+  // meta: { requiresAuth: true, wxt: true },
+  component: () => import('../views/ceshi.vue')
+},
+  {
     //首页
     path: '/',
     name: 'index2',
@@ -280,7 +298,7 @@ const routes = [
   },
   {
     // 幸运转吧
-    path: '/lucky',
+    path: '/lucky/:turntable_id?',
     name: 'lucky',
     meta: { requiresAuth: true, wxt: true },
     component: () => import('../views/lucky.vue')
@@ -360,12 +378,13 @@ router.beforeEach((to, from, next) => {
           sessionStorage.setItem("mobile", '');
           sessionStorage.setItem("is_certification", '');
           console.log('电销——调用了1',to.fullPath);
-          next({
-            // path: '/login',
-            query:location.href = `/#/login?redirect=/dx${to.fullPath}`
-            // query: { redirect: to.fullPath }
-            // query:window.location.href='/login'
-          })
+          next(
+            {
+            path: '/login',
+            query: { redirect: to.fullPath }
+            // query:location.href = `/#/login?redirect=/dx${to.fullPath}`
+          }
+          )
         }
       })
       .catch(() => {
@@ -381,9 +400,9 @@ router.beforeEach((to, from, next) => {
         console.log('电销——调用了2');
         next(
           {
-            // path: 'login',
-            // query: { redirect: to.fullPath }
-            query:location.href = `/#/login?redirect=/dx${to.fullPath}`
+            path: 'login',
+            query: { redirect: to.fullPath }
+            // query:location.href = `/#/login?redirect=/dx${to.fullPath}`
           }
         )
       })

@@ -79,12 +79,15 @@
             v-model="options"
             value="integral"
             id="integral"
-          /><span>互帮积分</span
-          ><span class="hint">{{ newestData.available_amount }}/次</span>
+          />
+          <!-- <span>互帮积分</span> -->
+          <span>积分余额</span>
+          <span class="hint">{{ newestData.available_amount }}/次</span>
         </div>
         <div @click="change(1)">
-          <input type="radio" v-model="options" value="roll" id="roll" /><span
-            >卷余额</span
+          <input type="radio" v-model="options" value="roll" id="roll" />
+          <!-- <span>卷余额</span -->
+          <span>电商余额</span
           ><span class="hint">{{ newestData.balance }}/次</span>
         </div>
       </div>
@@ -316,7 +319,7 @@ import moreBtn from "@/components/morebtn.vue";
 export default {
   data() {
     return {
-      showpop:false,//右上角的菜单
+      showpop: false, //右上角的菜单
       acquire: null, //【投入】弹出层展示的抽奖次数
       time: {}, //开始抽奖的倒计时
       tzorzj: false, //我要投注/我要追加
@@ -328,6 +331,7 @@ export default {
       first: [], //首页数据
       zb: ["公司转吧", "个人转吧"],
       num: 0, //添加样式——【公司转吧】/【个人转吧】
+      turntable_id:false,//是否是从【首页的轮播图】进入的——修改
       type: 0, //下拉菜单
       rollBalance: null, //卷余额
       integralBalance: null, //积分余额
@@ -355,11 +359,20 @@ export default {
       shicha: 0,
     };
   },
-    components: {
-    moreBtn
+  components: {
+    moreBtn,
   },
 
   created() {
+    //修改
+    //判断是否是从【首页的轮播图】进入的
+    if(this.$route.params.turntable_id){
+      this.type = parseInt(this.$route.params.turntable_id);
+      this.turntable_id = true;
+      console.log(this.type,'type');
+      console.log(this.$route.params.turntable_id,'路由信息');
+      console.log(this.turntable_id,'标识符');
+    }
     this.toas0 = this.$toast.loading({
       duration: 0,
       message: "加载中...",
@@ -409,6 +422,7 @@ export default {
     type: {
       handler(val) {
         this.cou = 0;
+        this.turntable_id = false;//如果手动更换了【转盘类型】，则取消【从轮播图点进来的】
         //0是默认的提示信息
         if (!val) {
           this.newestData = []; //重置
@@ -491,13 +505,28 @@ export default {
         // this.toas1.clear(); //结束【加载中...】
         return;
       }
-
+      let data = {};
+      //
+      /**
+       * 修改
+       * 如果存在路由信息params.turntable_id
+       * 则说明是从【轮播图】点进来的
+       * *如果this.turntable_id【轮播图的标示】为假了
+       * *说明用户进来之后手动更改了【转盘类型】
+       */
+      if (this.$route.params.turntable_id && this.turntable_id) {
+        data = {
+          turntable_id: this.$route.params.turntable_id,
+        };
+      } else {
+        data = {
+          class_id: this.option1[this.type].id,
+        };
+      }
       axios
         .post(
           `${apiHost}/turntable/list`,
-          qs.stringify({
-            class_id: this.option1[this.type].id,
-          })
+          qs.stringify(data)
         )
         .then((val) => {
           let { data } = val;
@@ -593,6 +622,15 @@ export default {
         this.cou = 0; //重置
         return;
       }
+      //修改
+      //互帮积分或者卷余额--
+      if(this.options === 'integral'){
+        //互帮积分——积分余额
+        this.first.balance-=this.newestData.available_amount
+      }else{
+        //电商余额——卷余额
+        this.first.available_amount-=this.newestData.balance
+      }
       // if(!this.option1[this.type].zhuangtai){
       //   this.$toast("当前转盘暂未开启");
       // this.cou = 0;//重置
@@ -612,8 +650,10 @@ export default {
       //判断是使用的【电商卷】还是【互帮积分】
       let type;
       if (this.options === "integral") {
+        //积分余额——互帮积分
         type = 2;
       } else {
+        //电商余额——卷余额
         type = 1;
       }
       axios
