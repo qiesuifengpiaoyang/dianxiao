@@ -289,20 +289,22 @@ const routes = [
     meta: { requiresAuth: true, wxt: true },
     component: () => import(/* webpackChunkName: "prizelists" */ '../views/prizelists.vue')
   },
-  {
-    // 天天幸运
-    path: '/everyday',
-    name: 'everyday',
-    meta: { requiresAuth: true, wxt: true },
-    component: () => import('../views/everyday.vue')
-  },
-  {
-    // 幸运转吧
-    path: '/lucky/:turntable_id?',
-    name: 'lucky',
-    meta: { requiresAuth: true, wxt: true },
-    component: () => import('../views/lucky.vue')
-  },
+  // 21-5-11修改，暂时关闭抽奖入口
+  // {
+  //   // 天天幸运
+  //   path: '/everyday',
+  //   name: 'everyday',
+  //   meta: { requiresAuth: true, wxt: true },
+  //   component: () => import('../views/everyday.vue')
+  // },
+  // 21-5-11修改，暂时关闭抽奖入口
+  // {
+  //   // 幸运转吧
+  //   path: '/lucky/:turntable_id?',
+  //   name: 'lucky',
+  //   meta: { requiresAuth: true, wxt: true },
+  //   component: () => import('../views/lucky.vue')
+  // },
   {
     // 兑换奖品
     path: '/duihuan/:draw_id?/:address_id',

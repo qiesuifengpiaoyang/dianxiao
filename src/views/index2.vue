@@ -32,7 +32,8 @@
         @click="jsToModular(item)"
       />
     </van-grid>
-    <div class="turntable-box">
+    <!-- 21-5-11修改，暂时关闭抽奖入口 -->
+    <!-- <div class="turntable-box">
       <div>
         <p>天天有奖</p>
         <div @click="jsToModular(999)">
@@ -75,7 +76,7 @@
           <img src="../imgs/s-dial_pointer.png" class="zqq" />
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- <div class="ceshi">
       <div class="ceshibox">
         <div class="imgbox">

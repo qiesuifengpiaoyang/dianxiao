@@ -457,8 +457,8 @@ export default {
           obj.value = i;
           obj.id = info.class[i - 1].id; //转盘开启状态
           this.option1.push(obj);
-          this.toas0.clear(); //结束【加载中...】
         }
+        this.toas0.clear(); //结束【加载中...】
       });
     },
     djs() {
