@@ -66,12 +66,16 @@ export default {
                 this.$toast("未到开盘时间")
             }else{
                 console.log(o.id);
+                //21-5-8修改，记录一下turntables被废弃了，这也页面是干嘛的我也忘了^_^
+                //先不删除吧
+                //turntable后面增加个s
+                //说的是turntable和大佬的关键字冲突了
                 // this.$router.push({
-                //     name:"turntable",
+                //     name:"turntables",
                 //     params:{turntable_id:o.id}
                 // })
-                // `turntable?${o.id}`
-                this.$router.push(`turntable?${o.id}`)
+                // `turntables?${o.id}`
+                this.$router.push(`turntables?${o.id}`)
             }
         },
         onClickLeft(){

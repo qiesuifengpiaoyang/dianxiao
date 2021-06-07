@@ -33,13 +33,19 @@ module.exports = {
   devServer: {
     proxy: {
       '/apis': {
-        // target: 'http://test.tongxintailm.com',
-        target: 'http://shopping.tongxintailm.com/api',
+        target: 'http://test.tongxintailm.com/api',
+        // target: 'http://shopping.tongxintailm.com/api',
         changeOrigin: true,
         pathRewrite: {
           '^/apis': ''//需要rewrite重写的
         }
       }
     }
-  }
+  },
+  //去除console.log
+	configureWebpack: config => {
+		if (process.env.NODE_ENV === 'production') {
+			config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
+		}
+	}
 }

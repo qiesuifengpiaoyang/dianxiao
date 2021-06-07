@@ -119,20 +119,30 @@ export default {
           url: "./static/img/pifashangpin.png",
           text: "批发部",
         },
+        // {
+        //   modular_id: 2, // 2
+        //   url: "./static/img/shequpintuan.png",
+        //   text: "开心拼吧",
+        // },
+        // {
+        //   modular_id: 3,
+        //   url: "./static/img/huanlegou.png",
+        //   text: "欢乐购",
+        // },
+        // {
+        //   modular_id: 4,
+        //   url: "./static/img/yiyuangou.png",
+        //   text: "一元购",
+        // },
+        // {
+        //   modular_id: 6,
+        //   url: "./static/img/huanlegou.png",
+        //   text: "复消商品",
+        // },
         {
-          modular_id: 2, // 2
-          url: "./static/img/shequpintuan.png",
-          text: "开心拼吧",
-        },
-        {
-          modular_id: 3,
+          modular_id: 6,
           url: "./static/img/huanlegou.png",
-          text: "欢乐购",
-        },
-        {
-          modular_id: 4,
-          url: "./static/img/yiyuangou.png",
-          text: "一元购",
+          text: "代理专区",
         },
         // ,{
         // modular_id:999, // 5

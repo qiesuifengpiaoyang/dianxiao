@@ -12,24 +12,21 @@ VueRouter.prototype.push = function push(to) {
 Vue.use(Vuex)
 
 const routes = [
+  //   {
+  //   //测试的时候添加的登录页
+  //   path: '/login',
+  //   name: 'login',
+
+  //   // meta: { wxt: true },
+  //   // meta: { requiresAuth: true, wxt: true },
+  //   component: () => import('../views/login.vue')
+  // },
   {
-  //测试的时候添加的登录页
-  path: '/login',
-  name: 'login',
-
-  // meta: { wxt: true },
-  // meta: { requiresAuth: true, wxt: true },
-  component: () => import('../views/login.vue')
-},
-{
-  //测试的时候添加的登录页
-  path: '/ceshi',
-  name: 'ceshi',
-
-  // meta: { wxt: true },
-  // meta: { requiresAuth: true, wxt: true },
-  component: () => import('../views/ceshi.vue')
-},
+    //测试功能用页面
+    path: '/ceshi',
+    name: 'ceshi',
+    component: () => import('../views/ceshi.vue')
+  },
   {
     //首页
     path: '/',
@@ -232,12 +229,12 @@ const routes = [
   // },
   {
     // 转盘--首页————轮盘详情
-    path: '/turntable',
-    name: 'turntable', // 1
+    path: '/lunpan',
+    name: 'lunpan', // 1
 
 
     meta: { requiresAuth: true, wxt: true },
-    component: () => import(/* webpackChunkName: "turntable" */ '../views/turntable.vue')
+    component: () => import(/* webpackChunkName: "lunpan" */ '../views/lunpan.vue')
   },
   {
     // 转盘--中奖记录
@@ -246,7 +243,7 @@ const routes = [
 
 
     meta: { requiresAuth: true, wxt: true },
-    component: () => import(/* webpackChunkName: "turntable" */ '../views/recocrd.vue')
+    component: () => import(/* webpackChunkName: "lunpan" */ '../views/recocrd.vue')
   },
   {
     // 转盘--获奖感言
@@ -382,9 +379,9 @@ router.beforeEach((to, from, next) => {
           console.log('电销——调用了1',to.fullPath);
           next(
             {
-            path: '/login',
-            query: { redirect: to.fullPath }
-            // query:location.href = `/#/login?redirect=/dx${to.fullPath}`
+            // path: '/login',
+            // query: { redirect: to.fullPath }
+            query:location.href = `/#/login?redirect=/dx${to.fullPath}`
           }
           )
         }
@@ -402,16 +399,17 @@ router.beforeEach((to, from, next) => {
         console.log('电销——调用了2');
         next(
           {
-            path: 'login',
-            query: { redirect: to.fullPath }
-            // query:location.href = `/#/login?redirect=/dx${to.fullPath}`
+            // path: 'login',
+            // query: { redirect: to.fullPath }
+            query:location.href = `/#/login?redirect=/dx${to.fullPath}`
           }
         )
       })
 
   } else if (!is_weixn() && to.query.f === 'pps') {
     // console.log('to.query.f === pps的路由跳转');
-    next(to.query.redirect2)
+    // next(to.query.redirect2)
+    next(`/#/login?redirect=/dx${to.query.redirect2}`)
   } else {
     next() // 确保一定要调用 next()
   }

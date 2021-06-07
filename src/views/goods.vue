@@ -452,6 +452,7 @@ export default {
         this.spec_config_value_copy = `${this.spec_opt_val},${this.spec_config_num}个`;
         this.spec_config_cl();
       }
+      //复消产品不进入购物车，直接购买
       if (this.type == 6) {
         /**
          * 这是订单界面获取的方式

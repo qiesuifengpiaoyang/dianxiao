@@ -45,7 +45,15 @@
           <div class="tit">{{ item.title }}</div>
           <div class="cfig">{{ specv(item.spec) }}</div>
         </div>
-        <div class="num">x{{ item.num }}</div>
+        <div class="num">
+          x{{ item.num }}
+          <div>
+            邮费：{{
+              parseFloat(item.freight) == 0 ? "包邮" : item.freight + "元"
+            }}
+          </div>
+          <div>单价：{{ item.spec.price }}元</div>
+        </div>
       </li>
     </ul>
     <div style="margin-top: 12px"></div>
@@ -53,7 +61,7 @@
     <!-- 邮费信息 -->
     <div class="postage">
       <span>邮费</span>
-      <span>{{ youfei === 0 ? "包邮" : youfei + "元" }}</span>
+      <span>{{ parseFloat(youfei) == 0 ? "包邮" : youfei + "元" }}</span>
     </div>
     <div v-if="showHidden">
       <!-- 优惠券单元格/列表 -->
@@ -131,7 +139,7 @@ import { Dialog } from "vant";
 export default {
   data() {
     return {
-      youfei: 0,
+      youfei: 0, //邮费
       showpop: false,
       shopping_id: this.$route.params.shopping_id,
       type: this.$route.params.type, //新增的【复消商品】——类型
@@ -159,11 +167,12 @@ export default {
           name: "微信",
           icon: "wechat",
         },
-        {
-          id: 4,
-          name: "换购积分",
-          icon: "gem-o",
-        },
+        // ,
+        // {
+        //   id: 4,
+        //   name: "换购积分",
+        //   icon: "gem-o",
+        // },
       ],
       paymentShow: false,
       selpaytext: "请选择支付方式",
@@ -207,10 +216,14 @@ export default {
   },
   created() {
     console.log("4-2修改确定");
-    //如果是【type == 6——复消产品】的话，就隐藏【优惠券】和【支付方式】
-    if (this.type == 6) {
-      this.showHidden = !this.showHidden;
-    }
+    /**
+     * 如果是【type == 6——复消产品】的话，就隐藏【优惠券】和【支付方式】
+     * 21-6-6修改，业务逻辑修改，去掉上述条件
+     */
+
+    // if (this.type == 6) {
+    //   this.showHidden = !this.showHidden;
+    // }
     axios.post(`${apiHost}/address`).then((res) => {
       let { data } = res;
       if (data.status === 1) {
@@ -268,11 +281,14 @@ export default {
       axios
         .post(`${apiHost}/confirmOrderPage`, qs.stringify(val))
         .then((res) => {
+          console.log("优惠卷");
           let { data } = res;
           if (data.status != 1) {
             this.$toast(`${data.message}`);
             return;
           }
+          console.log(data);
+          this.youfei = data.info.freight;
           let infoone = { ...data.info };
           // for (const items of infoone.shopping) {
           //   let youfei = 0;
@@ -411,9 +427,10 @@ export default {
         let addressobj = addressdata.data;
         // this.youfei = detaildobj.info.shopping[0].freight;
         let infoone = { ...detaildobj.info };
-        for (const items of infoone.shopping) {
-          this.youfei = items.freight;
-        }
+        // for (const items of infoone.shopping) {
+        //   this.youfei += items.freight;
+        // }
+        this.youfei = detaildobj.info.freight;
         if (detaildobj.status === 1) {
           let infoco = { ...detaildobj.info };
           infoco.coupon.map((item) => {
@@ -462,6 +479,7 @@ export default {
       const toast1 = that.$toast.loading({ duration: 0, forbidClick: true });
       let data = {};
       if (this.type == 6) {
+        console.log('type等于6的',that.radiopay);
         //   type: this.$route.params.type, //新增的【复消商品】——类型
         // num: this.$route.params.shopping_id, //新增的【复消商品】——数量
         // commodity_id: this.$route.params.ref_page, //新增的【复消商品】——商品ID
@@ -471,34 +489,65 @@ export default {
           address_id: that.address_id,
           num: that.num,
           spec: that.specification,
-          pay_type:4
+          pay_type: that.radiopay,
         };
+        axios.get(`${apiHost}/getPayInfo`).then((res) => {
+          console.log(res.data.status, "res");
+          if (res.data.status != 1) {
+            console.log('是否等于1');
+            that.$toast(`${res.data.message}`);
+            return;
+          } else {
+            console.log('等于1');
+            axios
+              .post(`${apiHost}/addOrder`, qs.stringify(data))
+              .then((res) => {
+                let { data } = res;
+                let { status, message, info } = data;
+                if (status === 1) {
+                  if (info.has_pay === 1) {
+                    window.location.href = info.direct_url;
+                  } else if (info.has_pay === 0) {
+                    that.$toast(`${message}`);
+                    that.$router.replace({
+                      name: "orders",
+                      params: { type: 3 },
+                    }); // 支付成功待收货
+                  }
+                } else {
+                  toast1.clear();
+                  that.$toast(`${message}`);
+                }
+              });
+          }
+        });
       } else {
+        console.log('type就不等于6');
         data = {
           shopping_id: that.shopping_id,
           address_id: that.address_id,
           coupon_id: that.chosenCouponValId,
           pay_type: that.radiopay,
         };
-      }
-      axios.post(`${apiHost}/addOrder`, qs.stringify(data)).then((res) => {
-        let { data } = res;
-        let { status, message, info } = data;
-        if (status === 1) {
-          if (info.has_pay === 1) {
-            window.location.href = info.direct_url;
-          } else if (info.has_pay === 0) {
+        axios.post(`${apiHost}/addOrder`, qs.stringify(data)).then((res) => {
+          let { data } = res;
+          let { status, message, info } = data;
+          if (status === 1) {
+            if (info.has_pay === 1) {
+              window.location.href = info.direct_url;
+            } else if (info.has_pay === 0) {
+              that.$toast(`${message}`);
+              that.$router.replace({
+                name: "orders",
+                params: { type: 3 },
+              }); // 支付成功待收货
+            }
+          } else {
+            toast1.clear();
             that.$toast(`${message}`);
-            that.$router.replace({
-              name: "orders",
-              params: { type: 3 },
-            }); // 支付成功待收货
           }
-        } else {
-          toast1.clear();
-          that.$toast(`${message}`);
-        }
-      });
+        });
+      }
     },
 
     //拼团订单发起支付
@@ -593,6 +642,7 @@ export default {
       }
       .num {
         font-size: 12px;
+        text-align: right;
       }
       .cfig {
         font-size: 12px;
