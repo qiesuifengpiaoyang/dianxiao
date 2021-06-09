@@ -538,6 +538,7 @@ export default {
           let obj = { ...detaildata.info };
           this.minimum_purchasing = obj.minimum_purchasing; //最低购买数量
           this.unit = obj.unit; //单位
+          console.log(obj,'obj');
           if (obj.spec_type === 2) {
             obj.spec = that.filter2spec(obj.spec);
             obj.spec_config = that.filter_spec_opt_money(obj.spec_config);

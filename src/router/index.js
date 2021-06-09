@@ -12,21 +12,24 @@ VueRouter.prototype.push = function push(to) {
 Vue.use(Vuex)
 
 const routes = [
-  //   {
+  // {
   //   //测试的时候添加的登录页
   //   path: '/login',
   //   name: 'login',
-
-  //   // meta: { wxt: true },
-  //   // meta: { requiresAuth: true, wxt: true },
-  //   component: () => import('../views/login.vue')
+  //   component: () => import(/*webpackChunkName: "login" */'../views/login.vue')
   // },
-  {
-    //测试功能用页面
-    path: '/ceshi',
-    name: 'ceshi',
-    component: () => import('../views/ceshi.vue')
-  },
+  // {
+  //   //测试功能用页面
+  //   path: '/ceshi',
+  //   name: 'ceshi',
+  //   component: () => import(/*webpackChunkName: "ceshi" */'../views/ceshi.vue')
+  // },
+  // {
+  //   //图标
+  //   path: '/icons',
+  //   name: 'icons',
+  //   component: () => import(/*webpackChunkName: "icons" */'../views/icons.vue')
+  // },
   {
     //首页
     path: '/',
@@ -34,7 +37,7 @@ const routes = [
 
     // meta: { wxt: true },
     meta: { requiresAuth: true, wxt: true },
-    component: () => import('../views/index2.vue')
+    component: () => import(/*webpackChunkName: "index2" */'../views/index2.vue')
   },
   {
     // 发起拼团
@@ -74,8 +77,6 @@ const routes = [
     // 购物车
     path: '/shopcat',
     name: 'shopcat',
-
-
     meta: { requiresAuth: true, wxt: true },
     component: () => import(/*webpackChunkName: "shopcat" */ '../views/shopCat.vue')
   },
@@ -203,9 +204,6 @@ const routes = [
     // 电销记录
     path: '/balancelog',
     name: 'balancelog',
-
-
-
     meta: { requiresAuth: true, wxt: true },
     component: () => import(/*webpackChunkName: "balancelog" */ '../views/balancelog.vue')
   },
@@ -222,7 +220,6 @@ const routes = [
   //   // 转盘--首页————轮盘详情
   //   path: '/turntablebeifen',
   //   name: 'turntablebeifen', // 1
-
   // //   
   // meta: { requiresAuth: true, wxt: true },// 
   // component: () => import(/* webpackChunkName: "turntablebeifen" */ '../views/turntablebeifen.vue')
@@ -231,8 +228,6 @@ const routes = [
     // 转盘--首页————轮盘详情
     path: '/lunpan',
     name: 'lunpan', // 1
-
-
     meta: { requiresAuth: true, wxt: true },
     component: () => import(/* webpackChunkName: "lunpan" */ '../views/lunpan.vue')
   },
@@ -307,7 +302,7 @@ const routes = [
     path: '/duihuan/:draw_id?/:address_id',
     name: 'duihuan',
     meta: { requiresAuth: true, wxt: true },
-    component: () => import('../views/duihuan.vue')
+    component: () => import(/* webpackChunkName: "duihuan" */ '../views/duihuan.vue')
   }
 ];
 const router = new VueRouter({
@@ -331,7 +326,7 @@ function is_weixn() {
 
 
 router.beforeEach((to, from, next) => {
-  to.matched.some(record => console.log(record,'电销——'))
+  // to.matched.some(record => console.log(record,'电销——'))
   if (to.matched.some(record => record.meta.wxt) && is_weixn()) {
     //判断是否为微信小程序或者微博小程序
     next(
@@ -341,13 +336,13 @@ router.beforeEach((to, from, next) => {
       }
     );
   } else if (to.matched.some(record => record.meta.requiresAuth)) {
-    console.log('电销——2');
+    // console.log('电销——2');
     //判断meta.requiresAuth
     // console.log('requiresAuth存在');
     axios.get(`${apiHost}/islogin`)
       .then((res) => {
         let { data } = res
-        console.log(res, '电销——islogin接口返回的值');
+        // console.log(res, '电销——islogin接口返回的值');
         if (data.status === 1) {
           // sessionStorage.setItem("name", data.info.name || '我的好友');
           // sessionStorage.setItem("mobile", data.info.mobile);
@@ -371,23 +366,23 @@ router.beforeEach((to, from, next) => {
           // sessionStorage.setItem("name", '');
           // sessionStorage.setItem("mobile", '');
           // sessionStorage.setItem("is_certification", '');
-          console.log('电销——else 1的');
+          // console.log('电销——else 1的');
           sessionStorage.setItem("name", '');
           sessionStorage.setItem("title", '');
           sessionStorage.setItem("mobile", '');
           sessionStorage.setItem("is_certification", '');
-          console.log('电销——调用了1',to.fullPath);
+          // console.log('电销——调用了1',to.fullPath);
           next(
             {
-            // path: '/login',
-            // query: { redirect: to.fullPath }
-            query:location.href = `/#/login?redirect=/dx${to.fullPath}`
-          }
+              // path: '/login',
+              // query: { redirect: to.fullPath }
+              query: location.href = `/#/login?redirect=/dx${to.fullPath}`
+            }
           )
         }
       })
       .catch(() => {
-        console.log('电销——登陆异常的');
+        // console.log('电销——登陆异常的');
         // sessionStorage.setItem("name", '');
         // sessionStorage.setItem("mobile", '');
         // sessionStorage.setItem("is_certification", '');
@@ -396,12 +391,12 @@ router.beforeEach((to, from, next) => {
         sessionStorage.setItem("title", '');
         sessionStorage.setItem("mobile", '');
         sessionStorage.setItem("is_certification", '');
-        console.log('电销——调用了2');
+        // console.log('电销——调用了2');
         next(
           {
             // path: 'login',
             // query: { redirect: to.fullPath }
-            query:location.href = `/#/login?redirect=/dx${to.fullPath}`
+            query: location.href = `/#/login?redirect=/dx${to.fullPath}`
           }
         )
       })
@@ -409,7 +404,10 @@ router.beforeEach((to, from, next) => {
   } else if (!is_weixn() && to.query.f === 'pps') {
     // console.log('to.query.f === pps的路由跳转');
     // next(to.query.redirect2)
-    next(`/#/login?redirect=/dx${to.query.redirect2}`)
+    // next(`/#/login?redirect=/dx${to.query.redirect2}`)
+    next({
+      query: location.href = `/#/login?redirect=/dx${to.fullPath}`
+    })
   } else {
     next() // 确保一定要调用 next()
   }

@@ -10,33 +10,39 @@
   <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
   <meta name="format-detection" content="telephone=no">
   <meta name="wap-font-scale" content="no">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- <script src="./static/js/config.js"></script> -->
   <!-- <title><%= htmlWebpackPlugin.options.title %></title> -->
   <script>
     var windowHeight = window.innerHeight, public_styles = { container_exclude_title: { height: windowHeight }, banOverflowX: { overflowX: "hidden" } }, parseInt_10 = function (e) { return parseInt(e, 10) }; function parseFloat_10(e) { return parseFloat(e, 10) } document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px", window.onerror = function (e, n, t, o, i) { return !0 }
   </script>
   <script>
-    ;(function(doc, win) {
+      ; (function (doc, win) {
         var docEl = doc.documentElement,
-            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-            recalc = function() {
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+          recalc = function () {
 
-                var clientWidth = docEl.clientWidth
-                if (!clientWidth) return
-                if (clientWidth >= 750) {
-                    docEl.style.fontSize = '100px'
-                } else {
-                    docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'
-                }
-          docEl.clientWidth
+            var clientWidth = docEl.clientWidth
+            if (!clientWidth) return
+            if (clientWidth >= 750) {
+              docEl.style.fontSize = '100px'
+            } else {
+              docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'
             }
+            docEl.clientWidth
+          }
 
         if (!doc.addEventListener) return
         recalc()
         win.addEventListener(resizeEvt, recalc, false)
         doc.addEventListener('DOMContentLoaded', recalc, false)
-    })(document, window)
-    </script>
+      })(document, window)
+    //---------------------------------------
+    // console.log(navigator);
+    
+  </script>
   <style>
     [v-cloak] {
       display: none;

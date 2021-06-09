@@ -114,11 +114,11 @@ export default {
         // type 商品类型 1批发商品 2社区拼团 3欢乐购 41元购
       ],
       listch: [
-        {
-          modular_id: 1,
-          url: "./static/img/pifashangpin.png",
-          text: "批发部",
-        },
+        // {
+        //   modular_id: 1,
+        //   url: "./static/img/pifashangpin.png",
+        //   text: "批发部",
+        // },
         // {
         //   modular_id: 2, // 2
         //   url: "./static/img/shequpintuan.png",

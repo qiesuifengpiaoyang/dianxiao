@@ -6,7 +6,7 @@ $on:onFvtabCl
 <template>
     <van-tabbar route :value="active" active-color="#e02e24" inactive-color="#000">
         <van-tabbar-item icon="home-o" name="首页" to="/">首页</van-tabbar-item>
-        <van-tabbar-item icon="apps-o" name="分类" to="/classification/1">分类</van-tabbar-item>
+        <van-tabbar-item icon="apps-o" name="分类" to="/classification/6">分类</van-tabbar-item>
         <van-tabbar-item icon="shopping-cart-o" name="购物车" to="/shopcat">购物车</van-tabbar-item>
         <van-tabbar-item icon="contact" name="个人中心" to="/personal">个人中心</van-tabbar-item>
         <van-tabbar-item icon="home-o"  @click="fh">同心台</van-tabbar-item>

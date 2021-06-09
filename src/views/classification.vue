@@ -55,10 +55,10 @@ export default {
       type: this.$route.params.type,
       listObj: {},
       listch: [
-        {
-          modular_id: 1,
-          text: "批发部",
-        },
+        // {
+        //   modular_id: 1,
+        //   text: "批发部",
+        // },
         // {
         //   modular_id: 2,
         //   text: "开心拼吧",
