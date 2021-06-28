@@ -12,24 +12,24 @@ VueRouter.prototype.push = function push(to) {
 Vue.use(Vuex)
 
 const routes = [
-  {
-    //测试的时候添加的登录页
-    path: '/login',
-    name: 'login',
-    component: () => import(/*webpackChunkName: "login" */'../views/login.vue')
-  },
-  {
-    //测试功能用页面
-    path: '/ceshi',
-    name: 'ceshi',
-    component: () => import(/*webpackChunkName: "ceshi" */'../views/ceshi.vue')
-  },
-  {
-    //测试功能用页面
-    path: '/ceshi2',
-    name: 'ceshi2',
-    component: () => import(/*webpackChunkName: "ceshi2" */'../views/ceshi2.vue')
-  },
+  // {
+  //   //测试的时候添加的登录页
+  //   path: '/login',
+  //   name: 'login',
+  //   component: () => import(/*webpackChunkName: "login" */'../views/login.vue')
+  // },
+  // {
+  //   //测试功能用页面
+  //   path: '/ceshi',
+  //   name: 'ceshi',
+  //   component: () => import(/*webpackChunkName: "ceshi" */'../views/ceshi.vue')
+  // },
+  // {
+  //   //测试功能用页面
+  //   path: '/ceshi2',
+  //   name: 'ceshi2',
+  //   component: () => import(/*webpackChunkName: "ceshi2" */'../views/ceshi2.vue')
+  // },
   // {
   //   //图标
   //   path: '/icons',
@@ -383,9 +383,9 @@ router.beforeEach((to, from, next) => {
           // console.log('电销——调用了1',to.fullPath);
           next(
             {
-              path: '/login',
-              query: { redirect: to.fullPath }
-              // query: location.href = `/#/login?redirect=/dx${to.fullPath}`
+              // path: '/login',
+              // query: { redirect: to.fullPath }
+              query: location.href = `/#/login?redirect=/dx${to.fullPath}`
             }
           )
         }
