@@ -12,18 +12,24 @@ VueRouter.prototype.push = function push(to) {
 Vue.use(Vuex)
 
 const routes = [
-  // {
-  //   //测试的时候添加的登录页
-  //   path: '/login',
-  //   name: 'login',
-  //   component: () => import(/*webpackChunkName: "login" */'../views/login.vue')
-  // },
-  // {
-  //   //测试功能用页面
-  //   path: '/ceshi',
-  //   name: 'ceshi',
-  //   component: () => import(/*webpackChunkName: "ceshi" */'../views/ceshi.vue')
-  // },
+  {
+    //测试的时候添加的登录页
+    path: '/login',
+    name: 'login',
+    component: () => import(/*webpackChunkName: "login" */'../views/login.vue')
+  },
+  {
+    //测试功能用页面
+    path: '/ceshi',
+    name: 'ceshi',
+    component: () => import(/*webpackChunkName: "ceshi" */'../views/ceshi.vue')
+  },
+  {
+    //测试功能用页面
+    path: '/ceshi2',
+    name: 'ceshi2',
+    component: () => import(/*webpackChunkName: "ceshi2" */'../views/ceshi2.vue')
+  },
   // {
   //   //图标
   //   path: '/icons',
@@ -125,8 +131,6 @@ const routes = [
   { // 订单列表
     path: '/search_result/:opt_name?/:keyword?/:type/:class_id',
     name: 'search_result',
-
-
     meta: { requiresAuth: true, wxt: true },
     component: () => import(/*webpackChunkName: "search_result" */ '../views/search_result.vue')
   },
@@ -138,14 +142,15 @@ const routes = [
     meta: { requiresAuth: true, wxt: true },
     component: () => import(/*webpackChunkName: "search_result_make" */ '../views/search_result_make.vue')
   },
-  { // 个人中心
-    path: '/personal',
-    name: 'personal',
+  //21-6-16修改，合并到同心台的【我的】中
+  // { // 个人中心
+  //   path: '/personal',
+  //   name: 'personal',
 
 
-    meta: { requiresAuth: true, wxt: true },
-    component: () => import(/*webpackChunkName: "personal" */ '../views/personal.vue')
-  },
+  //   meta: { requiresAuth: true, wxt: true },
+  //   component: () => import(/*webpackChunkName: "personal" */ '../views/personal.vue')
+  // },
   { // 评论
     path: '/comments/:shopping_id',
     name: 'comments',
@@ -181,15 +186,12 @@ const routes = [
     meta: { requiresAuth: true, wxt: true },
     component: () => import(/*webpackChunkName: "coupon" */ '../views/coupon.vue')
   },
-  {
-    // 代金券
-    path: '/demoxiong',
-    name: 'demoxiong',
-
-
-    meta: { requiresAuth: true, wxt: true },
-    component: () => import(/*webpackChunkName: "demoxiong" */ '../views/demoxiong.vue')
-  },
+  // {
+  //   path: '/demoxiong',
+  //   name: 'demoxiong',
+  //   meta: { requiresAuth: true, wxt: true },
+  //   component: () => import(/*webpackChunkName: "demoxiong" */ '../views/demoxiong.vue')
+  // },
   {
     // 地址列表
     path: '/addresses',
@@ -224,13 +226,13 @@ const routes = [
   // meta: { requiresAuth: true, wxt: true },// 
   // component: () => import(/* webpackChunkName: "turntablebeifen" */ '../views/turntablebeifen.vue')
   // },
-  {
-    // 转盘--首页————轮盘详情
-    path: '/lunpan',
-    name: 'lunpan', // 1
-    meta: { requiresAuth: true, wxt: true },
-    component: () => import(/* webpackChunkName: "lunpan" */ '../views/lunpan.vue')
-  },
+  // {
+  //   // 转盘--首页————轮盘详情
+  //   path: '/lunpan',
+  //   name: 'lunpan', // 1
+  //   meta: { requiresAuth: true, wxt: true },
+  //   component: () => import(/* webpackChunkName: "lunpan" */ '../views/lunpan.vue')
+  // },
   {
     // 转盘--中奖记录
     path: '/recocrd',
@@ -303,6 +305,13 @@ const routes = [
     name: 'duihuan',
     meta: { requiresAuth: true, wxt: true },
     component: () => import(/* webpackChunkName: "duihuan" */ '../views/duihuan.vue')
+  },
+  {
+    // 购物卡
+    path: '/GiftCARDS',
+    name: 'GiftCARDS',
+    meta: { requiresAuth: true, wxt: true },
+    component: () => import(/* webpackChunkName: "GiftCARDS" */ '../views/GiftCARDS.vue')
   }
 ];
 const router = new VueRouter({
@@ -374,9 +383,9 @@ router.beforeEach((to, from, next) => {
           // console.log('电销——调用了1',to.fullPath);
           next(
             {
-              // path: '/login',
-              // query: { redirect: to.fullPath }
-              query: location.href = `/#/login?redirect=/dx${to.fullPath}`
+              path: '/login',
+              query: { redirect: to.fullPath }
+              // query: location.href = `/#/login?redirect=/dx${to.fullPath}`
             }
           )
         }

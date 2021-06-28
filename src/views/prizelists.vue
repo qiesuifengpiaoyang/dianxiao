@@ -68,16 +68,16 @@ export default {
         this.draw_id = parseInt(_value[0].split("=")[1]);
         this.turntable_id = parseInt(_value[1].split("=")[1]);
       }
-    }else{
-        this.$toast("访问不合法！")
-        return;
+    } else {
+      this.$toast("访问不合法！");
+      return;
     }
-    console.log(this.draw_id,this.turntable_id);
+    console.log(this.draw_id, this.turntable_id);
     axios
       .post(
         `${apiHost}/turntable`,
         qs.stringify({
-          turntable_id: this.turntable_id
+          turntable_id: this.turntable_id,
         })
       )
       .then((val) => {
@@ -100,10 +100,10 @@ export default {
     },
     //补差价
     price() {
-    //   this.states = false;
+      //   this.states = false;
       // this.direct_url//支付宝支付链接
       console.log(this.direct_url);
-      window.open(this.direct_url,"_blank");
+      window.open(this.direct_url, "_blank");
     },
     //兑换
     conversions(draw, id) {
@@ -159,7 +159,7 @@ export default {
   flex-direction: column;
   align-items: center;
   font-size: 16px;
-
+  // min-height: 100vh;
   .list {
     width: 100%;
     margin: 0 auto;
@@ -226,10 +226,10 @@ export default {
       text-align: center;
       color: #000;
       background-color: #fff;
-      & span{
-          display: inline-block;
-          padding: 0 5px;
-          color: red;
+      & span {
+        display: inline-block;
+        padding: 0 5px;
+        color: red;
       }
     }
   }

@@ -9,11 +9,12 @@
         </div>
         <div class="name">
           <div class="icon">
-            <img :src="icon" alt="">
+            <img :src="icon" alt="" />
           </div>
           <div>
             <p>{{ name }}</p>
-            <p>{{ mobile }}</p>
+            <p>{{ id }}</p>
+            <!-- <p>{{ mobile }}</p> -->
           </div>
         </div>
         <div class="money" @click="moneylist">
@@ -64,13 +65,14 @@
     <div class="per-list">
       <van-grid :column-num="5" :border="false">
         <van-grid-item icon="balance-pay" text="代金券" @click="couponcl" />
+        <van-grid-item icon="cart-circle-o" text="购物卡" to="GiftCARDS" />
         <van-grid-item icon="location-o" text="收货地址" @click="addressescl" />
         <van-grid-item icon="bag-o" text="我的拼单" @click="bagocal" />
         <!-- <van-grid-item icon="setting-o" text="设置" /> -->
       </van-grid>
     </div>
 
-    <Footer active="个人中心" />
+    <Footer active="我的" />
   </div>
 </template>
 <script>
@@ -91,11 +93,14 @@ export default {
           ? sessionStorage.getItem("name")
           : "同心台用户"
       }`,
-      mobile: `${
-        !!sessionStorage.getItem("mobile")
-          ? sessionStorage.getItem("mobile")
-          : "手机号"
+      id: `${
+        !!sessionStorage.getItem("id") ? sessionStorage.getItem("id") : "手机号"
       }`,
+      // mobile: `${
+      //   !!sessionStorage.getItem("mobile")
+      //     ? sessionStorage.getItem("mobile")
+      //     : "手机号"
+      // }`,
       money: 0,
       icon: sessionStorage.getItem("icon_url"),
     };

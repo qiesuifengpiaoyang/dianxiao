@@ -65,13 +65,13 @@
     </div>
     <div v-if="showHidden">
       <!-- 优惠券单元格/列表 -->
-      <van-coupon-cell
+      <!-- <van-coupon-cell
         :coupons="list.coupon"
         :chosen-coupon="chosenCoupon"
         :border="false"
         @click="showList = true"
         class="yhj01"
-      />
+      /> -->
       <van-popup
         v-model="showList"
         round

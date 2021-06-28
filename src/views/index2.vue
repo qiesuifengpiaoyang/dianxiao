@@ -114,11 +114,11 @@ export default {
         // type 商品类型 1批发商品 2社区拼团 3欢乐购 41元购
       ],
       listch: [
-        // {
-        //   modular_id: 1,
-        //   url: "./static/img/pifashangpin.png",
-        //   text: "批发部",
-        // },
+        {
+          modular_id: 1,
+          url: "./static/img/pifashangpin.png",
+          text: "批发部",
+        },
         // {
         //   modular_id: 2, // 2
         //   url: "./static/img/shequpintuan.png",
@@ -207,6 +207,7 @@ export default {
       }, 20);
     },
     jsToModular(item) {
+      console.log(item, "item");
       if (item === 999) {
         //天天幸运
         this.$router.push({
@@ -217,6 +218,47 @@ export default {
         this.$router.push({
           name: "lucky",
         });
+      } else if (item.modular_id == 6) {
+        let that = this;
+        const toast1 = that.$toast.loading({
+          duration: 0,
+          message: "加载中...",
+          forbidClick: true,
+        });
+        axios
+          .post(`${apiHost}/class`, qs.stringify({ type: +item.modular_id }))
+          .then((res) => {
+            toast1.clear();
+            let { data } = res;
+            let { status, info, message } = data;
+            // info = [];
+            if (status == 1) {
+              console.log(info, "info");
+              console.log(info[0].id);
+              console.log(info[0].title);
+              this.$router.push({
+                name: "search_result",
+                params: {
+                  type: item.modular_id,
+                  class_id: info[0].id,
+                  opt_name: info[0].title,
+                },
+              });
+            } else {
+              that.$toast({
+                message,
+                forbidClick: true,
+              });
+            }
+          });
+        // this.$router.push({
+        //   name: "search_result",
+        //   params: {
+        //     type: 6,
+        //     class_id: 2,
+        //     opt_name: "test",
+        //   },
+        // });
       } else {
         this.$router.push({
           path: `classification/${item.modular_id}`,

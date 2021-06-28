@@ -21,7 +21,127 @@
 .navbarfixed-0{
 
 }
+
+// $overall_background_color:#fbbb5f;//全局背景色
+// $overall_background_color_b:#e48e0b;//分类的左侧导航栏&&顶部导航栏
+// $overall_background_color_s:#fad5a0;//输入框等更为浅的
+// .overall_background_color{
+//     //全局背景色
+//     background-color: $overall_background_color;
+// }
+// .overall_navigation_color{
+//     //顶部状态栏
+//     background-color: $overall_background_color_b;
+//     color: #fff;
+// }
+// .light_colour{
+//     //浅色
+//     background-color: $overall_background_color_s;
+// }
+// //顶部中间的文本
+// .van-ellipsis{
+//     color: #fff;
+// }
+// .van-nav-bar__text{
+//     color: #fff;
+// }
+
+
+// //分类
+// .tx-dx-classification{
+//     .van-sidebar {
+//         //分类——左侧——导航栏
+//         background-color: $overall_background_color_b;
+//         .van-sidebar-item{
+//             //分类——左侧——导航栏——未选中的
+//             background-color: $overall_background_color_b;
+//         }
+//         .van-sidebar-item--select{
+//             //分类——左侧——导航栏——选中的
+//             background-color: $overall_background_color;
+//         }
+//     }
+//     .van-tree-select__content{
+//         //分类——右侧——分类列表
+//         background-color: $overall_background_color;
+//         .van-grid-item__content{
+//             background-color: $overall_background_color
+//         }
+//     }
+// }
+// //详细分类
+// .tx-dx-sgood{
+//     .sgood-sear-right{
+//         background-color: $overall_background_color_s;
+//         color: #fff;
+//     }
+//     .good-sear-right-home{
+//         color: #fff;
+//     }
+//     .van-icon{
+//         color: #fff;
+//     }
+//     .van-grid-item__content{
+//         background-color: $overall_background_color_s;
+// }
+
+// }
+// //顶部导航栏
+// .searchmask-hed{
+//     // background-color: $overall_background_color_b;
+//     // color: #fff;
+// }
+// //searchMask
+// .van-search {
+//     background-color: $overall_background_color_s;
+//     .van-search__content {
+//       background-color: $overall_background_color_s;
+//       input {
+//         background-color: $overall_background_color_s;
+//       }
+//     }
+// }
+// .van-search__action {
+//     border-left: 1px solid $overall_background_color_b;
+//     color: #fff;
+// }
+// .searchmask-hed{
+//     .van-icon-search {
+//         color: #fff;
+//     }
+//     input::-webkit-input-placeholder {
+//         color: #fff;
+//     }
+//     input{
+//         color: #fff;
+//     }
+// }
+// //我的订单
+// .tx-dx-orders{
+//     button{
+//         background-color: $overall_background_color_b;
+//         // color: #fff;
+//         border: none;
+//     }
+//     .conbox{
+//         border-top: 1px solid $overall_background_color_s;
+//     }
+// }
+
+// .box{
+//     .ordertab{
+//         background-color: $overall_background_color_b;
+//         color: #fff;
+//     }
+//     .evaluate-list>li{
+//         background-color: $overall_background_color_s;
+//     }
+// }
+
+
 .fbpl{
+    // background-color: $overall_background_color_b;
+    // color: #fff;
     height: .9rem;
     position: fixed;
     left: 0;
@@ -29,6 +149,9 @@
     width: 100%;
     z-index: 10;
     color: #151516;
+    // .van-nav-bar__title{
+    //     color: #fff;
+    // }
     span{
         height: .8rem;
         line-height: .8rem;
@@ -37,10 +160,12 @@
     .van-icon-arrow-left,
     .van-icon-weapp-nav{
         color: #151516;
+        // color: #fff;
     }
     .van-icon-share{
         font-size: 16px;
         color: #151516;
+        // color: #fff;
     }
 }
 .scgood-plu-01{

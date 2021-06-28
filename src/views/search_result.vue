@@ -315,27 +315,28 @@ export default {
       this.showpop = !this.showpop;
     },
     arrowleft() {
-      let obj = this.$route.params;
-      if (!!this.keyword) {
-        this.page = 0;
-        this.list = [];
-        this.keyword = "";
-        this.loading = true;
-        this.listcl();
-        this.$router.replace({
-          name: "search_result",
-          params: {
-            type: obj.type,
-            class_id: obj.class_id,
-            opt_name: obj.opt_name,
-          },
-        });
-      } else {
-        this.$router.replace({
-          name: "classification",
-          params: { type: obj.type },
-        });
-      }
+      this.$router.go(-1);
+      // let obj = this.$route.params;
+      // if (!!this.keyword) {
+      //   this.page = 0;
+      //   this.list = [];
+      //   this.keyword = "";
+      //   this.loading = true;
+      //   this.listcl();
+      //   this.$router.replace({
+      //     name: "search_result",
+      //     params: {
+      //       type: obj.type,
+      //       class_id: obj.class_id,
+      //       opt_name: obj.opt_name,
+      //     },
+      //   });
+      // } else {
+      //   this.$router.replace({
+      //     name: "classification",
+      //     params: { type: obj.type },
+      //   });
+      // }
     },
     onSearch(o) {
       this.$router.replace({
@@ -427,6 +428,7 @@ export default {
 </script>
 <style lang="scss">
 .tx-dx-sgood {
+  // min-height: 100vh;
   .sgood-sear-box {
     position: fixed;
     left: 0;

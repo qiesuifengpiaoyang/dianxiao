@@ -44,7 +44,7 @@
     </div>
     <div class="login-register" @click="loginRegister">快速注册</div>
     <!-- <popup></popup> -->
-    <p class="records" @click="referenceBtn">蜀ICP备20018437号-1</p>
+    <!-- <p class="records" @click="referenceBtn">蜀ICP备20018437号-1</p> -->
   </div>
 </template>
 <script>

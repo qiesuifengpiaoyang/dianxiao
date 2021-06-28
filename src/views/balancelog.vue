@@ -121,7 +121,7 @@ export default {
 .evaluate-wrapper {
   font-size: 16px;
   padding-bottom: 1.4rem;
-
+  // min-height: 100vh;
   .evaluate-empty {
     text-align: center;
     font-size: 100px;

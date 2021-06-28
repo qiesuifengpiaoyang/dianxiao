@@ -15,7 +15,7 @@
             </li>
             <li @click="gohref(4)">
                 <van-icon name="contact" />
-                <span>个人中心</span>
+                <span>我的</span>
             </li>
         </ul>
     </van-popup>
@@ -48,9 +48,10 @@ export default {
                     params:{type:1}
                 })
             }else if(n === 4){
-                this.$router.replace({
-                    name:"personal"
-                })
+                // this.$router.replace({
+                //     name:"personal"
+                // })
+                window.location.href = "/#/me";
             }
         },
         clickoverlay(){

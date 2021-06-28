@@ -55,10 +55,10 @@ export default {
       type: this.$route.params.type,
       listObj: {},
       listch: [
-        // {
-        //   modular_id: 1,
-        //   text: "批发部",
-        // },
+        {
+          modular_id: 1,
+          text: "批发部",
+        },
         // {
         //   modular_id: 2,
         //   text: "开心拼吧",
@@ -220,6 +220,9 @@ export default {
     .van-sidebar-item--select {
       color: #ee0a24;
     }
+    .van-sidebar-item--select::before{
+      background-color: rgb(251, 187, 95);
+    }
     .van-sidebar-item {
       color: #58595b;
     }
@@ -236,6 +239,9 @@ export default {
       .van-grid-item__content {
         padding-top: 0;
       }
+      img{
+        border-radius: 5px;
+      }
     }
     .titbox {
       height: 1rem;
@@ -245,6 +251,7 @@ export default {
     .tit {
       padding-left: 16px;
     }
+    
   }
 }
 </style>

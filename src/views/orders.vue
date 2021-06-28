@@ -76,7 +76,7 @@
             <div class="btnbox">
               <div v-if="it.step === 1">
                 <!-- <van-button color="#151516" class="bc9c9c9c" :hairline="true" plain @click.stop="redCallFn(it, 98)" v-if="it.cancel == 1">再次购买</van-button> -->
-                <van-button
+                <!-- <van-button
                   color="#151516"
                   class="bc9c9c9c"
                   :hairline="true"
@@ -84,13 +84,12 @@
                   @click.stop="redCallFn(it, 97)"
                   v-if="it.cancel == 1"
                   >删除订单</van-button
-                >
+                > -->
               </div>
               <!-- <div v-if="it.step === 2"> -->
               <div v-if="it.step !== 1">
                 <!-- <van-button color="#e02e24" @click.stop="redCallFn(it,100)" v-if="it.cancel === 0">去支付</van-button> -->
                 <van-button
-                  color="#e02e24"
                   @click.stop="redCallFn(it, 100)"
                   v-if="it.cancel === 0 && it.step === 2"
                   >去支付</van-button
@@ -105,7 +104,7 @@
                   v-if="it.cancel === 0"
                   >取消订单</van-button
                 >
-                <van-button
+                <!-- <van-button
                   color="#151516"
                   class="bc9c9c9c"
                   :hairline="true"
@@ -113,7 +112,7 @@
                   @click.stop="redCallFn(it, 97)"
                   v-if="it.cancel == 1"
                   >删除订单</van-button
-                >
+                > -->
               </div>
               <div v-if="it.step === 3">
                 <!-- <van-button color="#151516" class="bc9c9c9c" :hairline="true" plain @click.stop="redCallFn(it, 98)">再次购买</van-button> -->
@@ -139,14 +138,14 @@
                   >立即评价</van-button
                 >
                 <!-- <van-button color="#151516" class="bc9c9c9c" :hairline="true" plain @click.stop="redCallFn(it, 98)">再次购买</van-button> -->
-                <van-button
+                <!-- <van-button
                   color="#151516"
                   class="bc9c9c9c"
                   :hairline="true"
                   plain
                   @click.stop="redCallFn(it, 97)"
                   >删除订单</van-button
-                >
+                > -->
                 <!-- <van-button color="#151516" class="bc9c9c9c" :hairline="true" plain @click.stop="redCallFn(it, 96)">查看物流</van-button>
                             <van-button color="#151516" class="bc9c9c9c" :hairline="true" plain @click.stop="redCallFn(it, 95)">申请退款</van-button>-->
               </div>
@@ -199,9 +198,10 @@ export default {
   },
   methods: {
     onClickLeft() {
-      this.$router.replace({
-        name: "personal",
-      });
+      this.$router.go(-1);
+      // this.$router.replace({
+      //   name: "personal",
+      // });
     },
     redCallFn(o, n, index) {
       let that = this;
@@ -452,8 +452,13 @@ export default {
 };
 </script>
 <style lang="scss" >
+$button_b_color:#9c9c9c;
 .tx-dx-orders {
   min-height: 100vh;
+  button{
+    background-color: #fff;
+    border: 1px solid $button_b_color;
+  }
   .orderlist-box {
     padding-top: 1.6rem;
   }
@@ -498,12 +503,18 @@ export default {
         min-width: 1.6rem;
         padding: 0;
         margin-right: 0.2rem;
+        border-radius: 50px;
         &:first-child {
           margin-right: 0;
         }
       }
+      .van-button--hairline::after {
+        border: none !important;
+      }
       .bc9c9c9c {
-        border-color: #9c9c9c !important;
+        border-color: $button_b_color !important;
+        // color: #fff !important;
+        // background-color: #35bffd;
       }
     }
     .conbox {
@@ -512,7 +523,7 @@ export default {
       background: #f4f4f4;
       display: flex;
       // justify-content: space-between;
-      // align-items: center;
+      align-items: center;
       .item1 {
         img {
           width: 1.6rem;
@@ -553,7 +564,6 @@ export default {
         color: #9c9c9c;
         // text-align: center;
         margin-left: 0.2rem;
-
         width: 70vw;
         & > p:nth-child(1) {
           color: #333;
@@ -622,6 +632,10 @@ export default {
     .van-icon-arrow-left,
     .van-icon-weapp-nav {
       color: #151516;
+      // color: #fff;
+    }
+    .van-ellipsis {
+      color: #000;
     }
     span {
       position: relative;

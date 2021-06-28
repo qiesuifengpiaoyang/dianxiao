@@ -423,7 +423,6 @@ export default {
 .addresses-wrapper {
   font-size: 16px;
   padding-bottom: 1.4rem;
-
   .address-empty {
     text-align: center;
     font-size: 100px;
