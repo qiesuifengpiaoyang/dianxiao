@@ -117,7 +117,27 @@ export default {
         {
           modular_id: 1,
           url: "./static/img/pifashangpin.png",
-          text: "批发部",
+          text: "批发专区",
+        },
+        {
+          modular_id: 2,
+          url: "./static/img/pifashangpin.png",
+          text: "爱心专区",
+        },
+        {
+          modular_id: 3,
+          url: "./static/img/pifashangpin.png",
+          text: "品牌专区",
+        },
+        {
+          modular_id: 4,
+          url: "./static/img/pifashangpin.png",
+          text: "折扣专区",
+        },
+        {
+          modular_id: 5,
+          url: "./static/img/pifashangpin.png",
+          text: "拼团专区",
         },
         // {
         //   modular_id: 2, // 2
@@ -143,6 +163,16 @@ export default {
           modular_id: 6,
           url: "./static/img/huanlegou.png",
           text: "代理专区",
+        },
+        {
+          modular_id: 7,
+          url: "./static/img/pifashangpin.png",
+          text: "折扣专区",
+        },
+        {
+          modular_id: 8,
+          url: "./static/img/pifashangpin.png",
+          text: "换购专区",
         },
         // ,{
         // modular_id:999, // 5
@@ -208,6 +238,17 @@ export default {
     },
     jsToModular(item) {
       console.log(item, "item");
+      if (
+        item.modular_id == 2 ||
+        item.modular_id == 3 ||
+        item.modular_id == 4 ||
+        item.modular_id == 5 ||
+        item.modular_id == 7 ||
+        item.modular_id == 8
+      ) {
+        this.$toast(`暂未开放，敬请期待`);
+        return;
+      }
       if (item === 999) {
         //天天幸运
         this.$router.push({

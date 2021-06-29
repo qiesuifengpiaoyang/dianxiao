@@ -57,7 +57,23 @@ export default {
       listch: [
         {
           modular_id: 1,
-          text: "批发部",
+          text: "批发专区",
+        },
+        {
+          modular_id: 2,
+          text: "爱心专区",
+        },
+        {
+          modular_id: 3,
+          text: "品牌专区",
+        },
+        {
+          modular_id: 4,
+          text: "折扣专区",
+        },
+        {
+          modular_id: 5,
+          text: "拼团专区",
         },
         // {
         //   modular_id: 2,
@@ -78,6 +94,14 @@ export default {
         {
           modular_id: 6,
           text: "代理专区",
+        },
+        {
+          modular_id: 7,
+          text: "折扣专区",
+        },
+        {
+          modular_id: 8,
+          text: "换购专区",
         },
       ],
     };
@@ -155,7 +179,21 @@ export default {
       }
     },
     jsToNav(index) {
+      
+      console.log('点击了这里',index);
+      if(
+        index == 1 ||
+        index == 2 ||
+        index == 3 ||
+        index == 4 ||
+        index == 6 ||
+        index == 7
+      ){
+        this.$toast('暂未开放，敬请期待');
+        return;
+      }
       this.active = index;
+      
       let type = this.listch[index].modular_id;
       this.type = type;
       this.$router.push({
